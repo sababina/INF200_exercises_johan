@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 
 """
 Solution to  task C on exercise 01 in INF200

@@ -10,6 +10,7 @@ def squares_by_comp(n):
 
 
 def squares_by_loop(n):
+
     squares = []
     for k in range(n):
         if k % 3 == 1:

@@ -1,34 +1,41 @@
-from random import randint as a
+from random import randint
 
-__author__ = ''
-__email__ = '@nmbu.no'
+__author__ = 'Johan Stabekk'
+__email__ = 'johan.stabekk@nmbu.no'
+
+"""
+
+"""
 
 
-def b():
-    c = 0
-    while c < 1:
-        c = int(input('Your guess: '))
-    return c
+def get_valid_input():
+    count = 0
+    while count < 1:
+        count = int(input('Your guess between 2 and 12: '))
+    return count
 
-def d():
-    return a(1, 6) + a(1, 6)
 
-def e(f, g):
-    return f == g
+def roll_dice():
+    return randint(1, 6) + randint(1, 6)
+
+
+def is_answer_correct(correct, guess):
+    return correct == guess
+
 
 if __name__ == '__main__':
 
-    h = False
-    i = 3
-    j = d()
-    while not h and i > 0:
-        k = b()
-        h = e(j, k)
-        if not h:
+    guessed_correct = False
+    remaining_attempts = 3
+    correct_answer = roll_dice()
+    while not guessed_correct and remaining_attempts > 0:
+        your_guess = get_valid_input()
+        guessed_correct = is_answer_correct(correct_answer, your_guess)
+        if not guessed_correct:
             print('Wrong, try again!')
-            i -= 1
+            remaining_attempts -= 1
 
-    if i > 0:
-        print('You won {} points.'.format(i))
+    if remaining_attempts > 0:
+        print('You won {} points.'.format(remaining_attempts))
     else:
-        print('You lost. Correct answer: {}.'.format(j))
+        print('You lost. Correct answer: {}.'.format(correct_answer))

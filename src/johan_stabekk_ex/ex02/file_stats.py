@@ -1,7 +1,21 @@
 # -*- coding: utf-8 -*-
 
 
+__author__ = 'Johan Stabekk'
+__email__ = 'johan.stabekk@nmbu.no'
+
+
 def char_counts(textfilename):
+    """
+
+    Parameters
+    ----------
+    textfilename
+
+    Returns
+    -------
+
+    """
 
     with open(textfilename, encoding='utf-8') as file:
         read_file = file.read()

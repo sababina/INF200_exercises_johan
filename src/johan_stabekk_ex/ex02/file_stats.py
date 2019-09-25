@@ -6,27 +6,26 @@ __email__ = 'johan.stabekk@nmbu.no'
 
 
 def char_counts(textfilename):
-    """
+    """ Opens the given file then reads it in to single string.
+    It then counts how often each character code occurs in the string, then
+    returns a list with the results.
 
     Parameters
     ----------
-    textfilename
+    textfilename - The text file you want to analyse.
 
     Returns
     -------
-
+    result - Returns a list of the counted character codes.
     """
 
     with open(textfilename, encoding='utf-8') as file:
         read_file = file.read()
         result = [0]*256
 
-        converted_file = [ord(char) for char in read_file]
-
-        for val in range(len(read_file)):
-            for char_nr in range(256):
-                if converted_file[val] == char_nr:
-                    result[char_nr] += 1
+        for char in read_file:
+            ascii_val = ord(char)
+            result[ascii_val] += 1
 
     return result
 

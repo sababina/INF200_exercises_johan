@@ -4,18 +4,18 @@ __author__ = 'Johan Stabekk'
 __email__ = 'johan.stabekk@nmbu.no'
 
 
-def bubble_sort(data):
-    """
+def bubble_sort(data_):
+    """ Sorts the data after the bubble_sort algorithm.
 
     Parameters
     ----------
-    data
+    data_ - The data that is going to be sorted.
 
     Returns
     -------
-
+    data_sorted - Returns the input data sorted in a new list.
     """
-    data_sorted = list(data)
+    data_sorted = list(data_)
 
     for i in range(0, len(data_sorted) - 1):
         for j in range(0, len(data_sorted) - 1 - i):

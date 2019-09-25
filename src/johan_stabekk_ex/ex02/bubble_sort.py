@@ -1,7 +1,20 @@
 # -*- coding: utf-8 -*-
 
+__author__ = 'Johan Stabekk'
+__email__ = 'johan.stabekk@nmbu.no'
+
 
 def bubble_sort(data):
+    """
+
+    Parameters
+    ----------
+    data
+
+    Returns
+    -------
+
+    """
     data_sorted = list(data)
 
     for i in range(0, len(data_sorted) - 1):

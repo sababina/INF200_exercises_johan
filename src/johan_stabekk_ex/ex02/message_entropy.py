@@ -10,8 +10,9 @@ def letter_freq(txt):
     """
     This code counts the frequency of how many times a character is used.
     :param txt: input for the user of the code.
-    :return: Returns a dictionary where the frequency of characters in txt is placed,
-            with the character as a key and the number of times as a value
+    :return: Returns a dictionary where the frequency of characters in txt is
+            placed, with the character as a key and the number
+            of times as a value
     """
     freq = {}
     txt_lowered = txt.lower()

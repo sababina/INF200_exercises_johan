@@ -39,10 +39,11 @@ def entropy(message):
 
     """
 
+    n = len(message)
     message = letter_freq(message)
     h = 0
     for n_i in message.values():
-        p_i = n_i / sum(message.values())
+        p_i = n_i / n
         h += -p_i * (np.log(p_i))
 
     return h / np.log(2)

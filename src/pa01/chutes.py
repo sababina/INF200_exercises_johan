@@ -3,3 +3,4 @@
 __author__ = ''
 __email__ = '@nmbu.no'
 
+print('hei')

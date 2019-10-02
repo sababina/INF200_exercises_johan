@@ -67,9 +67,8 @@ def test_original_unchanged():
     Now data shall still contain [3, 2, 1].
     """
     data = [3, 2, 1]
-    sorted_data = bubble_sort(data)
-    assert all(elem in data for elem in sorted_data)
-    # Or should it be assert data == [3, 2, 1] ?
+    bubble_sort(data)
+    assert data == [3, 2, 1]
 
 
 def test_sort_sorted():
@@ -101,4 +100,5 @@ def test_sorting():
     ensure that they are sorted correctly. These could be lists of
     numbers of different length or lists of strings.
     """
+
     pass

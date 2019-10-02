@@ -9,20 +9,6 @@ import pytest
 
 def median(data):
     """
-    Returns median of data.
-
-    :param data: An iterable of containing numbers
-    :return: Median of data
-    """
-
-    sdata = sorted(data)
-    n = len(sdata)
-    return (sdata[n//2] if n % 2 == 1
-            else 0.5 * (sdata[n//2 - 1] + sdata[n//2]))
-
-
-def median_2(data):
-    """
     Returns median of data in a new version that makes the ValueError test
     work.
 
@@ -34,7 +20,7 @@ def median_2(data):
     if num_elements % 2 == 1:
         return sorted_data[num_elements // 2]
     elif not sorted_data:
-        raise ValueError
+        raise ValueError('Please insert a list that is not empty')
     else:
         return (
             sorted_data[num_elements // 2 - 1] + sorted_data[num_elements // 2]
@@ -72,12 +58,12 @@ def test_median_of_unordered_list():
 
 def test_median_raises_value_error_on_empty_list():
     with pytest.raises(ValueError):
-        median_2([])
+        median([])
 
 
 def test_original_data_stays_same():
     data = [1, 2, 3, 4, 5, 6]
-    new_data= median(data)
+    median(data)
     assert data == [1, 2, 3, 4, 5, 6]
 
 
@@ -85,7 +71,3 @@ def test_median_of_tuple_works():
     list1 = [1, 2, 3, 4]
     tuple1 = tuple(list1)
     assert median(tuple1) == median(list1)
-
-
-
-

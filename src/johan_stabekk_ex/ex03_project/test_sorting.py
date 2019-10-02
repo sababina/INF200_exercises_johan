@@ -69,7 +69,7 @@ def test_original_unchanged():
     data = [3, 2, 1]
     sorted_data = bubble_sort(data)
     assert all(elem in data for elem in sorted_data)
-    # Eller skal det være assert data == [3, 2, 1]
+    # Or should it be assert data == [3, 2, 1] ?
 
 
 def test_sort_sorted():
@@ -82,14 +82,15 @@ def test_sort_sorted():
 def test_sort_reversed():
     """Test that sorting works on reverse-sorted data."""
     data = [5, 4, 3, 2, 1]
-    sorted_data = [1, 2, 3, 4, 5]
+    sorted_data = sorted(data)
     assert bubble_sort(data) == sorted_data
 
 
 def test_sort_all_equal():
     """Test that sorting handles data with identical elements."""
-
-    pass
+    data = [1, 1, 5, 2, 3, 9, 8, 2, 5]
+    sorted_data = sorted(data)
+    assert bubble_sort(data) == sorted_data
 
 
 def test_sorting():

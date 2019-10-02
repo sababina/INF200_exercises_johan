@@ -21,6 +21,23 @@ def median(data):
             else 0.5 * (sdata[n//2 - 1] + sdata[n//2]))
 
 
+def median_2(data):
+    """
+    Returns median of data.
+
+    :param data: An iterable of containing numbers
+    :return: Median of data
+    """
+    sorted_data = sorted(data)
+    num_elements = len(sorted_data)
+    if num_elements % 2 == 1:
+        return sorted_data[num_elements // 2]
+    else:
+        return (
+            sorted_data[num_elements // 2 - 1] + sorted_data[num_elements // 2]
+        ) / 2
+
+
 def test_median_of_singleton():
     assert median([4]) == 4
 
@@ -53,4 +70,15 @@ def test_median_of_unordered_list():
 def test_median_raises_value_error_on_empty_list():
     with pytest.raises(ValueError):
         median([])
+
+
+def test_original_data_stays_same():
+    data = [1, 2, 3, 4, 5, 6]
+    new_data= median(data)
+    assert data == [1, 2, 3, 4, 5, 6]
+
+
+def test_median_of_tuple_works():
+    
+
 

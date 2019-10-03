@@ -101,4 +101,14 @@ def test_sorting():
     numbers of different length or lists of strings.
     """
 
-    pass
+    sorted_numbers_int = [3, 4, 5, 6, 7]
+    assert bubble_sort(sorted_numbers_int) == sorted(sorted_numbers_int)
+
+    sorted_string = ['abehasdfavehhe']
+    assert bubble_sort(sorted_string) == sorted(sorted_string)
+
+    sorted_string_list = ['aaa', 'bnbabbb', 'jfqgqefsjfjff']
+    assert bubble_sort(sorted_string_list) == sorted(sorted_string_list)
+
+    sorted_numbers_float = [0.0000, 0.89898, 0.9999]
+    assert bubble_sort(sorted_numbers_float) == sorted(sorted_numbers_float)

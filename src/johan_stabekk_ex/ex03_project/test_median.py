@@ -12,6 +12,10 @@ def median(data):
     Returns median of data in a new version that makes the ValueError test
     work.
 
+    This function was made by Yngve in the lecture. I modified it a bit by
+    including elif to raise ValueError so that the test that raises
+    ValueError works.
+
     :param data: An iterable of containing numbers
     :return: Median of data
     """

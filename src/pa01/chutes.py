@@ -24,8 +24,8 @@ def single_game(num_players):
                           43: 62, 49: 79, 56: 37, 64: 27, 65: 82,
                           68: 85, 74: 12, 87: 70}
     max_roll = 6
-    list_of_players = [0] * num_players
-    positions = [0] * num_players
+    list_of_players = [None] * num_players
+    positions = [None] * num_players
     highest_position = 0
     turns = 0
 
@@ -64,7 +64,7 @@ def multiple_games(num_games, num_players):
     num_moves : list
         List with the number of moves needed in each game.
     """
-    moves = [0] * num_games
+    moves = [None] * num_games
     for game in range(num_games):
         moves[game] += single_game(num_players)
 

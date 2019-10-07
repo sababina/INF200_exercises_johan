@@ -63,6 +63,7 @@ def multiple_games(num_games, num_players):
     moves = [0] * num_games
     for game in range(num_games):
         moves[game] += single_game(num_players)
+    return moves
 
 
 test1 = multiple_games(5, 3)

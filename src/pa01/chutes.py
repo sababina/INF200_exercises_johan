@@ -24,12 +24,12 @@ def single_game(num_players):
                           43: 62, 49: 79, 56: 37, 64: 27, 65: 82,
                           68: 85, 74: 12, 87: 70}
     max_roll = 6
-    list_of_players = [None] * num_players
-    positions = [None] * num_players
+    list_of_players = [0] * num_players
+    positions = [0] * num_players
     highest_position = 0
     turns = 0
 
-    while highest_position <= 90:
+    while highest_position < 90:
         turns += 1
         for player in list_of_players:
             roll = random.randint(1, max_roll)
@@ -37,15 +37,11 @@ def single_game(num_players):
                 break
             else:
                 positions[player] += roll
-                positions[player] = \
-                    ladders_and_snakes.get(positions[player],
-                                           positions[player])
+                positions[player] = ladders_and_snakes.get(
+                    positions[player], positions[player]
+                )
         highest_position = max(positions)
     return turns
-
-
-testrun = single_game(8)
-print(testrun)
 
 
 def multiple_games(num_games, num_players):
@@ -64,11 +60,13 @@ def multiple_games(num_games, num_players):
     num_moves : list
         List with the number of moves needed in each game.
     """
-    moves = [None] * num_games
+    moves = [0] * num_games
     for game in range(num_games):
         moves[game] += single_game(num_players)
 
-    pass
+
+test1 = multiple_games(5, 3)
+print(test1)
 
 
 def multi_game_experiment(num_games, num_players, seed):

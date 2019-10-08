@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import random
+import statistics
 
 __authors__ = 'Johan Stabekk, Sabina Langås'
 __emails__ = 'johan.stabekk@nmbu.no, sabina.langaas@nmbu.no'
@@ -66,11 +67,7 @@ def multiple_games(num_games, num_players):
     return moves
 
 
-test1 = multiple_games(5, 3)
-print(test1)
-
-
-def multi_game_experiment(num_games, num_players, seed):
+def multi_game_experiment(num_games, num_players, seed=None):
     """
     Returns durations of a number of games when playing with given seed.
 
@@ -88,5 +85,23 @@ def multi_game_experiment(num_games, num_players, seed):
     num_moves : list
         List with the number of moves needed in each game.
     """
-    pass
+    random.seed(seed)
+    moves = [0] * num_games
+    for game in range(num_games):
+        moves[game] += single_game(num_players)
+    return moves
+
+
+if __name__ == '__main__':
+
+    list_of_games = multi_game_experiment(100, 4, 5)
+    longest_duration = max(list_of_games)
+    shortest_duration = min(list_of_games)
+    mean_duration = statistics.mean(list_of_games)
+    standard_deviation_duration = statistics.stdev(list_of_games)
+
+    print('The longest duration is: {}'.format(longest_duration))
+    print('The shortest duration is: {}'.format(shortest_duration))
+    print('The mean duration is: {}'.format(mean_duration))
+    print('The standard deviation is: {}'.format(standard_deviation_duration))
 

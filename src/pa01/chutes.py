@@ -32,14 +32,12 @@ def single_game(num_players):
 
     while highest_position < 90:
         turns += 1
-        for player in range(0, len(list_of_players)):
+        for player in range(len(list_of_players)):
             roll = random.randint(1, max_roll)
-            if positions[player] >= 90:
-                break
-            else:
-                positions[player] += roll
-                positions[player] = ladders_and_snakes.get(
-                    positions[player], positions[player]
+
+            positions[player] += roll
+            positions[player] = ladders_and_snakes.get(
+                positions[player], positions[player]
                 )
         highest_position = max(positions)
     return turns
@@ -104,4 +102,3 @@ if __name__ == '__main__':
     print('The shortest duration is: {}'.format(shortest_duration))
     print('The mean duration is: {}'.format(mean_duration))
     print('The standard deviation is: {}'.format(standard_deviation_duration))
-

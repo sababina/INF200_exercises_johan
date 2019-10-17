@@ -28,7 +28,7 @@ def single_game(num_players):
     list_of_players = [0] * num_players
     positions = [0] * num_players
     highest_position = 0
-    turns = 0
+    moves = 0
 
     while highest_position < 90:
         turns += 1
@@ -40,7 +40,7 @@ def single_game(num_players):
                 positions[player], positions[player]
                 )
         highest_position = max(positions)
-    return turns
+    return moves
 
 
 def multiple_games(num_games, num_players):

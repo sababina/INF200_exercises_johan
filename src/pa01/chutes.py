@@ -32,7 +32,7 @@ def single_game(num_players):
 
     while highest_position < 90:
         turns += 1
-        for player in list_of_players:
+        for player in range(0, len(list_of_players)):
             roll = random.randint(1, max_roll)
             if positions[player] >= 90:
                 break

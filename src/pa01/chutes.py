@@ -97,8 +97,10 @@ if __name__ == '__main__':
     shortest_duration = min(list_of_games)
     mean_duration = statistics.mean(list_of_games)
     standard_deviation_duration = statistics.stdev(list_of_games)
+    median_duration = statistics.median(list_of_games)
 
-    print('The longest duration is: {}'.format(longest_duration))
-    print('The shortest duration is: {}'.format(shortest_duration))
-    print('The mean duration is: {}'.format(mean_duration))
-    print('The standard deviation is: {}'.format(standard_deviation_duration))
+    print('The longest duration is {:.1f} turns'.format(longest_duration))
+    print('The shortest duration is {:.1f} turns'.format(shortest_duration))
+    print('The median duration is {:.1f} turns'.format(median_duration))
+    print('The mean value is {:.1f} turns and the standard deviation is {'
+          ':.1f} turns'.format(mean_duration, standard_deviation_duration))

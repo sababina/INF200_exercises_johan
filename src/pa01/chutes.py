@@ -28,7 +28,7 @@ def single_game(num_players):
     list_of_players = [0] * num_players
     positions = [0] * num_players
     highest_position = 0
-    moves = 0
+    turns = 0
 
     while highest_position < 90:
         turns += 1
@@ -40,7 +40,7 @@ def single_game(num_players):
                 positions[player], positions[player]
                 )
         highest_position = max(positions)
-    return moves
+    return turns
 
 
 def multiple_games(num_games, num_players):
@@ -97,8 +97,10 @@ if __name__ == '__main__':
     shortest_duration = min(list_of_games)
     mean_duration = statistics.mean(list_of_games)
     standard_deviation_duration = statistics.stdev(list_of_games)
+    median_duration = statistics.median(list_of_games)
 
     print('The longest duration is: {}'.format(longest_duration))
     print('The shortest duration is: {}'.format(shortest_duration))
-    print('The mean duration is: {}'.format(mean_duration))
-    print('The standard deviation is: {}'.format(standard_deviation_duration))
+    print('The median duration is: {}'.format(median_duration))
+    print('The mean value and the standard deviation is: {} and {}'.format(
+        mean_duration, standard_deviation_duration))

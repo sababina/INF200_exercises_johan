@@ -102,5 +102,5 @@ if __name__ == '__main__':
     print('The longest duration is {:.1f} turns'.format(longest_duration))
     print('The shortest duration is {:.1f} turns'.format(shortest_duration))
     print('The median duration is {:.1f} turns'.format(median_duration))
-    print('The mean value is {:.1f} turns and the standard deviation is {'
-          ':.1f} turns'.format(mean_duration, standard_deviation_duration))
+    print('The mean value is {:.1f} turns and the standard deviation is {:.1f}'
+          'turns'.format(mean_duration, standard_deviation_duration))

@@ -9,7 +9,7 @@ class LCGrand:
     a = 7**5
     m = 2**32-1
 
-    def __init__(self, seed=None):
+    def __init__(self, seed):
         self.previous = seed
 
     def rand(self):
@@ -39,10 +39,8 @@ class ListRand:
 if __name__ == '__main__':
 
     list_nr = ListRand([1, 5, 1, 2, 3, 4])
-    seed = LCGrand(256)
+    last = LCGrand(256)
 
     for i in range(6):
-        print(f'Random number from LCGrand {seed.rand()} and i*th number '
+        print(f'Random number from LCGrand {last.rand()} and i*th number '
               f'{list_nr.rand()}')
-
-

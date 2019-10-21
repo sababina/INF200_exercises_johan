@@ -44,8 +44,4 @@ if __name__ == '__main__':
 
     for dist in distances:
         walk_length = [start_to_home(0, dist) for _ in range(num_tries)]
-        print(f'Distance:  {dist:3d} -> Path Lengths: {sorted(walk_length)}')
-
-
-
-
+        print(f'Distance: {dist:3d} -> Path Lengths: {sorted(walk_length)}')

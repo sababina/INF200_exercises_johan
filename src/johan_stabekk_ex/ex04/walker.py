@@ -13,6 +13,12 @@ class Walker:
         self.steps = 0
 
     def move(self):
+        """ This function calculates one step for the walker class.
+
+        Returns nothing
+        -------
+
+        """
         self.position += 2 * random.randint(0, 1) - 1
         self.steps += 1
 
@@ -27,6 +33,18 @@ class Walker:
 
 
 def start_to_home(start, home):
+    """ This function calculates how many steps needed to get from start
+    position to home position.
+
+    Parameters
+    ----------
+    start - Start position
+    home - End position
+
+    Returns Number of steps to reach end position
+    -------
+
+    """
     walker = Walker(start, home)
 
     while not walker.is_at_home():

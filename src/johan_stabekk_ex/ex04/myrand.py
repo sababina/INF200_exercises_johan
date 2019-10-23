@@ -6,8 +6,8 @@ __email__ = 'johan.stabekk@nmbu.no'
 
 
 class LCGRand:
-    a = 7**5
-    m = 2**32-1
+    a = 7 ** 5
+    m = 2 ** 32 - 1
 
     def __init__(self, seed):
         self.previous = seed
@@ -26,7 +26,7 @@ class ListRand:
 
     def rand(self):
 
-        if self.next > len(self.list_nr):
+        if self.next >= len(self.list_nr):
             raise RuntimeError
 
         number = self.list_nr[self.next]

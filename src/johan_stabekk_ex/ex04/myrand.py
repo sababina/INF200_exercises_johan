@@ -6,6 +6,7 @@ __email__ = 'johan.stabekk@nmbu.no'
 
 
 class LCGRand:
+
     a = 7 ** 5
     m = 2 ** 32 - 1
 
@@ -13,9 +14,11 @@ class LCGRand:
         self.previous = seed
 
     def rand(self):
-        self.previous = (LCGRand.a * self.previous) % LCGRand.m
 
-        return self.previous
+        random = (LCGRand.a * self.previous) % LCGRand.m
+        self.previous = random
+
+        return random
 
 
 class ListRand:
@@ -38,7 +41,7 @@ class ListRand:
 if __name__ == '__main__':
 
     list_nr = ListRand([1, 5, 1, 2, 3, 4])
-    last = LCGRand(256)
+    last = LCGRand(346)
 
     for i in range(6):
         print(f'Random number from LCGrand {last.rand()} and i*th number '

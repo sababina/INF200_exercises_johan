@@ -5,7 +5,7 @@ __author__ = 'Johan Stabekk'
 __email__ = 'johan.stabekk@nmbu.no'
 
 
-class LCGrand:
+class LCGRand:
     a = 7**5
     m = 2**32-1
 

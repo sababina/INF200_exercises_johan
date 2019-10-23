@@ -13,7 +13,7 @@ class LCGRand:
         self.previous = seed
 
     def rand(self):
-        self.previous = LCGrand.a * self.previous % LCGrand.m
+        self.previous = LCGRand.a * self.previous % LCGRand.m
 
         return self.previous
 
@@ -39,7 +39,7 @@ class ListRand:
 if __name__ == '__main__':
 
     list_nr = ListRand([1, 5, 1, 2, 3, 4])
-    last = LCGrand(256)
+    last = LCGRand(256)
 
     for i in range(6):
         print(f'Random number from LCGrand {last.rand()} and i*th number '

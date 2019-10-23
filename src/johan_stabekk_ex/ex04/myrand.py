@@ -13,7 +13,7 @@ class LCGRand:
         self.previous = seed
 
     def rand(self):
-        self.previous = LCGRand.a * self.previous % LCGRand.m
+        self.previous = (LCGRand.a * self.previous) % LCGRand.m
 
         return self.previous
 
@@ -26,11 +26,10 @@ class ListRand:
 
     def rand(self):
 
-        number = self.list_nr[self.next]
-
         if self.next > len(self.list_nr):
             raise RuntimeError
 
+        number = self.list_nr[self.next]
         self.next += 1
 
         return number

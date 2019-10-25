@@ -48,5 +48,15 @@ class Simulation:
         return walker.get_steps()
 
     def run_simulation(self, num_walks):
-        pass
+        return [self.single_walk() for _ in range(num_walks)]
 
+
+if __name__ == '__main__':
+    print('Calculating list 1 -> 3 with start = 0 and home = 10')
+    print(f'List 1:{Simulation(0, 10, 12345).run_simulation(20)}')
+    print(f'List 2:{Simulation(0, 10, 12345).run_simulation(20)}')
+    print(f'List 3:{Simulation(0, 10, 54321).run_simulation(20)}')
+    print('Calculating list 4 -> 6 with start = 10 and home = 0')
+    print(f'List 4:{Simulation(10, 0, 12345).run_simulation(20)}')
+    print(f'List 5:{Simulation(10, 0, 12345).run_simulation(20)}')
+    print(f'List 6:{Simulation(10, 0, 54321).run_simulation(20)}')

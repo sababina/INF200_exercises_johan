@@ -6,18 +6,24 @@ __email__ = 'johan.stabekk@nmbu.no'
 
 class LCGRand:
 
-    a = 7 ** 5
-    m = 2 ** 32 - 1
+    slope = 7 ** 5
+    congruence_class = 2 ** 32 - 1
 
     def __init__(self, seed):
-        self.previous = seed
+        self._hidden_state = seed
 
     def rand(self):
 
-        random = (LCGRand.a * self.previous) % LCGRand.m
-        self.previous = random
+        self._hidden_state *= self.slope
+        self._hidden_state %= self.congruence_class
 
-        return random
+        return self._hidden_state
+
+    def random_sequence(self, length):
+        return RandIter(self, length)
+
+    def infinite_random_sequence(self):
+        pass
 
 
 class RandIter:
@@ -30,3 +36,6 @@ class RandIter:
     def __next__(self):
         pass
 
+
+if __name__ == '__main__':
+    pass

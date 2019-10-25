@@ -48,5 +48,5 @@ class Simulation:
         return walker.get_steps()
 
     def run_simulation(self, num_walks):
-
+        pass
 

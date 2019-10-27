@@ -23,19 +23,40 @@ class LCGRand:
         return RandIter(self, length)
 
     def infinite_random_sequence(self):
-        pass
+
 
 
 class RandIter:
     def __init__(self, random_number_generator, length):
-        pass
+        self.generator = random_number_generator
+        self.length = length
+        self.num_generated_numbers = None
 
     def __iter__(self):
-        pass
-    
+        if self.num_generated_numbers is not None:
+            raise RuntimeError
+
+        self.num_generated_numbers = 0
+        return self
+
     def __next__(self):
-        pass
+        if self.num_generated_numbers is None:
+            raise RuntimeError(
+                'Cannot call ``next`` before the the iteration is started'
+                )
+        if self.num_generated_numbers == len(self.length):
+            raise StopIteration
+        number = self.generator[self.num_generated_numbers]
+        self.num_generated_numbers += 1
+        return number
 
 
 if __name__ == '__main__':
-    pass
+    random_number_generator = LCGRand(1)
+    for rand in generator.random_sequence(10):
+        print(rand)
+
+    for i, rand in generator.infinite_random_sequence():
+        print(f'The {i}-th random number is {rand}')
+        if i > 100:
+            break

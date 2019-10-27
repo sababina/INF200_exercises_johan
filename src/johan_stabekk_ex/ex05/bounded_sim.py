@@ -48,14 +48,6 @@ if __name__ == '__main__':
     boundaries = [0, -10, -100, -1000, -10000]
 
     for boundary in boundaries:
-        steps = BoundedSimulation(0, 20, 12345, boundary, 20).run_simulation(20)
+        steps = BoundedSimulation(0, 20, 12345, boundary,
+                                  20).run_simulation(20)
         print(f'Left boundary {boundary:8d}: {steps}')
-
-
-
-
-
-
-
-
-

@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import sys
+
 __author__ = 'Johan Stabekk'
 __email__ = 'johan.stabekk@nmbu.no'
 
@@ -23,7 +25,8 @@ class LCGRand:
         return RandIter(self, length)
 
     def infinite_random_sequence(self):
-
+        while True:
+            yield self._hidden_state
 
 
 class RandIter:
@@ -44,15 +47,15 @@ class RandIter:
             raise RuntimeError(
                 'Cannot call ``next`` before the the iteration is started'
                 )
-        if self.num_generated_numbers == len(self.length):
+        if self.num_generated_numbers == self.length:
             raise StopIteration
-        number = self.generator[self.num_generated_numbers]
+        number = self.generator
         self.num_generated_numbers += 1
         return number
 
 
 if __name__ == '__main__':
-    random_number_generator = LCGRand(1)
+    generator = LCGRand(1)
     for rand in generator.random_sequence(10):
         print(rand)
 

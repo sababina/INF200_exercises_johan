@@ -6,7 +6,7 @@ __email__ = 'johan.stabekk@nmbu.no'
 
 class LCGRand:
     a = 7 ** 5
-    b = 2 ** 32 - 1
+    b = 2 ** 31 - 1
 
     def __init__(self, seed):
         self._hidden_state = seed
@@ -17,13 +17,11 @@ class LCGRand:
         return self._hidden_state
 
     def random_sequence(self, length):
-        return RandIter(self.rand(), length)
-        pass
+        return RandIter(self, length)
 
     def infinite_random_sequence(self):
         while True:
             yield self.rand()
-        pass
 
 
 class RandIter:
@@ -46,7 +44,7 @@ class RandIter:
                 )
         if self.num_generated_numbers == self.length:
             raise StopIteration
-        number = self.generator
+        number = self.generator.rand()
         self.num_generated_numbers += 1
         return number
 

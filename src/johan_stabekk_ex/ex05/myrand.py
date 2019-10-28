@@ -22,11 +22,11 @@ class LCGRand:
         return self._hidden_state
 
     def random_sequence(self, length):
-        return RandIter(self, length)
+        return RandIter(self.rand(), length)
 
     def infinite_random_sequence(self):
         while True:
-            yield self._hidden_state
+            yield LCGRand.rand(self)
 
 
 class RandIter:
@@ -37,7 +37,7 @@ class RandIter:
 
     def __iter__(self):
         if self.num_generated_numbers is not None:
-            raise RuntimeError
+            raise RuntimeError('Can not iterate through twice')
 
         self.num_generated_numbers = 0
         return self
@@ -45,7 +45,7 @@ class RandIter:
     def __next__(self):
         if self.num_generated_numbers is None:
             raise RuntimeError(
-                'Cannot call ``next`` before the the iteration is started'
+                'Can not call ``next`` before the the iteration is started'
                 )
         if self.num_generated_numbers == self.length:
             raise StopIteration
@@ -55,11 +55,11 @@ class RandIter:
 
 
 if __name__ == '__main__':
-    generator = LCGRand(1)
+    generator = LCGRand(3)
     for rand in generator.random_sequence(10):
         print(rand)
 
-    for i, rand in generator.infinite_random_sequence():
+    for i, rand in enumerate(generator.infinite_random_sequence()):
         print(f'The {i}-th random number is {rand}')
         if i > 100:
             break

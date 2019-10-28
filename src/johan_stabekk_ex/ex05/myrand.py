@@ -5,14 +5,15 @@ __email__ = 'johan.stabekk@nmbu.no'
 
 
 class LCGRand:
-    a = 7 ** 5
-    b = 2 ** 31 - 1
+    slope = 7 ** 5
+    congruence_class = 2 ** 31 - 1
 
     def __init__(self, seed):
         self._hidden_state = seed
 
     def rand(self):
-        self._hidden_state = LCGRand.a * self._hidden_state % LCGRand.b
+        self._hidden_state *= self.slope
+        self._hidden_state %= self.congruence_class
 
         return self._hidden_state
 

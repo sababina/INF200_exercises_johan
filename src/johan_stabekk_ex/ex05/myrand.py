@@ -5,19 +5,16 @@ __email__ = 'johan.stabekk@nmbu.no'
 
 
 class LCGRand:
-
     a = 7 ** 5
-    m = 2 ** 32 - 1
+    b = 2 ** 32 - 1
 
     def __init__(self, seed):
-        self.previous = seed
+        self._hidden_state = seed
 
     def rand(self):
+        self._hidden_state = LCGRand.a * self._hidden_state % LCGRand.b
 
-        random = (LCGRand.a * self.previous) % LCGRand.m
-        self.previous = random
-
-        return random
+        return self._hidden_state
 
     def random_sequence(self, length):
         return RandIter(self.rand(), length)
@@ -25,7 +22,7 @@ class LCGRand:
 
     def infinite_random_sequence(self):
         while True:
-            yield LCGRand.rand(self)
+            yield self.rand()
         pass
 
 

@@ -32,7 +32,7 @@ def test_infinite_numbers():
         zip(lcg.infinite_random_sequence(), true)
     ):
         assert rand == target, "The random number was incorrect"
-    assert i == len(true) - 1, "The sequence stopped by itself"
+        assert i == len(true) - 1, "The sequence stopped by itself"
 
     for i, target in enumerate(lcg.infinite_random_sequence()):
         if i > 100:

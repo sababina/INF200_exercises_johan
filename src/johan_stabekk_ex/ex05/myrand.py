@@ -1,32 +1,32 @@
 # -*- coding: utf-8 -*-
 
-import sys
-
 __author__ = 'Johan Stabekk'
 __email__ = 'johan.stabekk@nmbu.no'
 
 
 class LCGRand:
 
-    slope = 7 ** 5
-    congruence_class = 2 ** 32 - 1
+    a = 7 ** 5
+    m = 2 ** 32 - 1
 
     def __init__(self, seed):
-        self._hidden_state = seed
+        self.previous = seed
 
     def rand(self):
 
-        self._hidden_state *= self.slope
-        self._hidden_state %= self.congruence_class
+        random = (LCGRand.a * self.previous) % LCGRand.m
+        self.previous = random
 
-        return self._hidden_state
+        return random
 
     def random_sequence(self, length):
         return RandIter(self.rand(), length)
+        pass
 
     def infinite_random_sequence(self):
         while True:
             yield LCGRand.rand(self)
+        pass
 
 
 class RandIter:

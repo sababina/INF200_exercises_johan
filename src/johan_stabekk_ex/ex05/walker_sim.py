@@ -46,8 +46,8 @@ class Simulation:
         seed : int
             Random generator seed
         """
-        self.start_pos = start
-        self.end_pos = home
+        self.start = start
+        self.home = home
         self.seed = random.seed(seed)
 
     def single_walk(self):

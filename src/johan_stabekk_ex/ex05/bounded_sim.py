@@ -58,7 +58,7 @@ class BoundedSimulation(Simulation):
         self.right = right_limit
         self.left = left_limit
 
-    def walk(self):
+    def single_walk(self):
         walker = BoundedWalker(self.start, self.home, self.left, self.right)
 
         stride = 0

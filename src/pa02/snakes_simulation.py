@@ -33,6 +33,8 @@ class Board:
         self.goal = goal
         self.position = 0
 
+        self.snakes_and_ladders = {**self.snakes, **self.ladders}
+
     def goal_reached(self):
         return self.position == self.goal
 
@@ -58,8 +60,39 @@ class LazyPlayer(Player):
 
 
 class Simulation:
-    def __init__(self, players, randomize_players = False, seed=None):
+    def __init__(self, players, randomize_players=False,
+                 seed=None, board=Board()
+                 ):
+        """
+
+        Parameters
+        ----------
+        players
+        randomize_players
+        seed
+        """
+        self.board = board
         self.players = players
-        self.seed = seed
+        self.seed = random.seed(seed)
         self.randomize_players = randomize_players
-        if 
+
+        if self.randomize_players is True:
+            self.players = self.players.random.shuffle()
+
+    def single_game(self):
+        pass
+
+    def run_simulation(self):
+        pass
+
+    def get_results(self):
+        pass
+
+    def winners_per_type(self):
+        pass
+
+    def durations_per_type(self):
+        pass
+
+    def players_per_type(self):
+        pass

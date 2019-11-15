@@ -13,7 +13,6 @@ class Board:
 
     def __init__(self, snakes=None, ladders=None, goal=None):
 
-
         if ladders is None:
             ladders = Board.ladders
         if snakes is None:
@@ -94,36 +93,37 @@ class LazyPlayer(Player):
 
 
 class Simulation:
-    def __init__(self, players, randomize_players=False,
-                 seed=None, board=Board()
+    def __init__(self, player_field, board=None,
+                 seed=1, randomize_players=False,
                  ):
 
-        self.board = board
-        self.player_types = frozenset(c.__name__ for c in players)
-        self.players = players
+        if board is None:
+            self.board = Board()
+        else:
+            self.board = board
+        self.player_types = frozenset(c.__name__ for c in player_field)
+        self.players = player_field
         self.seed = random.seed(seed)
         self.randomize_players = randomize_players
         self.results = []
 
         if self.randomize_players is True:
-            self.players = self.players.random.shuffle()
+            random.shuffle(self.players)
 
     def single_game(self):
+        players = [player(self.board) for player in self.players]
         while True:
-            for player in self.players:
+            for player in players:
                 player.move()
                 if self.board.goal_reached(player.position):
                     return player.number_of_moves, type(player).__name__
 
     def run_simulation(self, number_of_games):
-
-        self.number_of_games = number_of_games
-
-
-        Simulation.single_game()
+        for _ in range(number_of_games):
+            self.results.append(self.single_game())
 
     def get_results(self):
-        pass
+        return self.results
 
     def winners_per_type(self):
         pass

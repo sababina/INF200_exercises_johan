@@ -23,7 +23,10 @@ class Board:
         """
 
         self.snakes_and_ladders = snakes_and_ladders
-        self.goal = goal
+        if goal is None:
+            self.goal = Board.goal
+        else:
+            self.goal = goal
 
     def goal_reached(self, position):
         return position >= self.goal

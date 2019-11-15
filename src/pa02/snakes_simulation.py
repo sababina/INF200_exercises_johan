@@ -45,8 +45,7 @@ class Player:
         roll = random.randint(1, 6)
 
         self.position += roll
-        self.position = self.board.position_adjustment(self.position,
-                                                    self.position)
+        self.position = self.board.position_adjustment(self.position)
         self.number_of_moves += 1
 
 
@@ -68,13 +67,28 @@ class ResilientPlayer(Player):
         roll = random.randint(1, 6)
 
         self.position += roll + extra
-        self.position = self.board.position_adjustment(self.position,
-                                                       self.position)
+        self.position = self.board.position_adjustment(self.position)
         self.number_of_moves += 1
 
 
 class LazyPlayer(Player):
-    pass
+    def __init__(self, board, minus_steps=1):
+        super().__init__(board)
+        self.minus_step = minus_steps
+        self.climbed = False
+
+    def move(self):
+
+        if self.climbed:
+            extra = self.minus_step
+        else:
+            extra = 0
+
+        roll = random.randint(1, 6)
+
+        self.position += roll + extra
+        self.position = self.board.position_adjustment(self.position)
+        self.number_of_moves += 1
 
 
 class Simulation:
@@ -90,15 +104,21 @@ class Simulation:
         seed
         """
         self.board = board
+        self.player_types = frozenset(c.__name__ for c in players)
         self.players = players
         self.seed = random.seed(seed)
         self.randomize_players = randomize_players
+        self.results = []
 
         if self.randomize_players is True:
             self.players = self.players.random.shuffle()
 
     def single_game(self):
-        pass
+        while True:
+            for player in self.players:
+                player.move()
+                if self.board.goal_reached(player.position):
+                    return player.number_of_moves, type(player).__name__
 
     def run_simulation(self):
         pass
@@ -114,3 +134,7 @@ class Simulation:
 
     def players_per_type(self):
         pass
+
+
+if __name__ == '__main__':
+    pass

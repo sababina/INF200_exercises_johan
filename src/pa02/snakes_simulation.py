@@ -12,30 +12,20 @@ class Board:
     goal = 90
 
     def __init__(self, snakes=None, ladders=None, goal=None):
-        """
 
-        Parameters
-        ----------
-        snakes
-        ladders
-        goal
-        """
 
         if ladders is None:
             ladders = Board.ladders
         if snakes is None:
             snakes = Board.snakes
 
-        #self.snakes = dict(snakes)
-        #self.ladders = dict(ladders)
-
-        self.snakes_and_ladders = {start: end for start, end in snakes + ladders}
         if goal is None:
             self.goal = Board.goal
         else:
             self.goal = goal
 
-        #self.snakes_and_ladders = self.snakes.update(self.ladders)
+        self.snakes_and_ladders = {start: end for start,
+                                   end in snakes + ladders}
 
     def goal_reached(self, position):
         return position >= self.goal
@@ -63,10 +53,10 @@ class Player:
 
 class ResilientPlayer(Player):
 
-    def __init__(self, board, plus_steps=1):
+    def __init__(self, board, extra_steps=1):
 
         super().__init__(board)
-        self.plus_step = plus_steps
+        self.plus_step = extra_steps
         self.fell_down = False
 
     def move(self):
@@ -84,9 +74,9 @@ class ResilientPlayer(Player):
 
 
 class LazyPlayer(Player):
-    def __init__(self, board, minus_steps=1):
+    def __init__(self, board, dropped_steps=1):
         super().__init__(board)
-        self.minus_step = minus_steps
+        self.minus_step = dropped_steps
         self.climbed = False
 
     def move(self):
@@ -107,14 +97,7 @@ class Simulation:
     def __init__(self, players, randomize_players=False,
                  seed=None, board=Board()
                  ):
-        """
 
-        Parameters
-        ----------
-        players
-        randomize_players
-        seed
-        """
         self.board = board
         self.player_types = frozenset(c.__name__ for c in players)
         self.players = players
@@ -132,8 +115,12 @@ class Simulation:
                 if self.board.goal_reached(player.position):
                     return player.number_of_moves, type(player).__name__
 
-    def run_simulation(self):
-        pass
+    def run_simulation(self, number_of_games):
+
+        self.number_of_games = number_of_games
+
+
+        Simulation.single_game()
 
     def get_results(self):
         pass

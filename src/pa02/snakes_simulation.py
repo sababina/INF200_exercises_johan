@@ -7,10 +7,10 @@ __email__ = 'johansta@nmbu.no, sabinal@nmbu.no'
 
 
 class Board:
-    snakes = {
-              1: 40, 8: 10, 24: 5, 33: 3, 36: 52, 42: 30, 43: 62, 49: 79,
-              56: 37, 64: 27, 65: 82, 68: 85, 74: 12, 87: 70
-              }
+    snakes_and_ladders = {
+        1: 40, 8: 10, 24: 5, 33: 3, 36: 52, 42: 30, 43: 62, 49: 79,
+        56: 37, 64: 27, 65: 82, 68: 85, 74: 12, 87: 70
+    }
     goal = 90
 
     def __init__(self, snakes_and_ladders=None, goal=None):
@@ -24,26 +24,53 @@ class Board:
 
         self.snakes_and_ladders = snakes_and_ladders
         self.goal = goal
-        self.position = 0
 
-    def goal_reached(self):
-        return self.position == self.goal
+    def goal_reached(self, position):
+        return position >= self.goal
 
-    def position_adjustment(self):
-        return
+    def position_adjustment(self, position):
+        new_position = self.snakes_and_ladders.get(position, position)
+
+        return new_position - position
 
 
 class Player:
+
     def __init__(self, board):
         self.board = board
         self.position = 0
+        self.number_of_moves = 0
 
     def move(self):
-        pass
+        roll = random.randint(1, 6)
+
+        self.position += roll
+        self.position = self.board.position_adjustment(self.position,
+                                                    self.position)
+        self.number_of_moves += 1
 
 
 class ResilientPlayer(Player):
-    pass
+
+    def __init__(self, board, plus_steps=1):
+
+        super().__init__(board)
+        self.plus_step = plus_steps
+        self.fell_down = False
+
+    def move(self):
+
+        if self.fell_down:
+            extra = self.plus_step
+        else:
+            extra = 0
+
+        roll = random.randint(1, 6)
+
+        self.position += roll + extra
+        self.position = self.board.position_adjustment(self.position,
+                                                       self.position)
+        self.number_of_moves += 1
 
 
 class LazyPlayer(Player):

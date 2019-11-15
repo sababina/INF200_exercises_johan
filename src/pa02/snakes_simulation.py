@@ -24,7 +24,7 @@ class Board:
             self.goal = goal
 
         self.snakes_and_ladders = {start: end for start,
-                                   end in snakes + ladders}
+                                                  end in snakes + ladders}
 
     def goal_reached(self, position):
         return position >= self.goal
@@ -119,20 +119,37 @@ class Simulation:
                     return player.number_of_moves, type(player).__name__
 
     def run_simulation(self, number_of_games):
+
         for _ in range(number_of_games):
-            self.results.append(self.single_game())
+            self.results.append(self.single_game)
 
     def get_results(self):
         return self.results
 
     def winners_per_type(self):
-        pass
+
+        winners_type = list(zip(self.results))[1]
+
+        winners_type_dict = {player_type: winners_type.count(player_type)
+                             for player_type in self.player_types}
+
+        return winners_type_dict
 
     def durations_per_type(self):
-        pass
+
+        return {player_type: [duration for duration, p_type in self.results if
+                              p_type == self.player_types] for player_type in
+                self.player_types}
 
     def players_per_type(self):
-        pass
+        
+        players_dic = {}
+
+        for player_type in frozenset(self.players):
+            players_dic = {
+                player_type.__name__: self.players.count(player_type)}
+
+        return players_dic
 
 
 if __name__ == '__main__':

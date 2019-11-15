@@ -7,8 +7,8 @@ __email__ = 'johansta@nmbu.no, sabinal@nmbu.no'
 
 
 class Board:
-    snakes = {1: 4, 4: 10, 40: 67}
-    ladders = {6: 2, 20: 15, 69: 27}
+    snakes = [(1, 4), (4, 10), (40, 67)]
+    ladders = [(6, 2), (20, 15), (69, 27)]
     goal = 90
 
     def __init__(self, snakes=None, ladders=None, goal=None):
@@ -26,15 +26,16 @@ class Board:
         if snakes is None:
             snakes = Board.snakes
 
-        self.snakes = dict(snakes)
-        self.ladders = dict(ladders)
+        #self.snakes = dict(snakes)
+        #self.ladders = dict(ladders)
 
+        self.snakes_and_ladders = {start: end for start, end in snakes + ladders}
         if goal is None:
             self.goal = Board.goal
         else:
             self.goal = goal
 
-        self.snakes_and_ladders = self.snakes.update(self.ladders)
+        #self.snakes_and_ladders = self.snakes.update(self.ladders)
 
     def goal_reached(self, position):
         return position >= self.goal

@@ -24,7 +24,7 @@ class Board:
             self.goal = goal
 
         self.snakes_and_ladders = {start: end for start,
-                                                  end in snakes + ladders}
+                                   end in snakes + ladders}
 
     def goal_reached(self, position):
         return position >= self.goal
